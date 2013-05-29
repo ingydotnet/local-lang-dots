@@ -84,7 +84,8 @@ Commands:
     install-nvm         Install NVM
     install-perlbrew    Install PerlBrew
     install-pythonbrew  Install PythonBrew
-    install-rbenv       Install RbEnv
+    install-rbenv       Install rbenv
+    install-cpanm       Install cpanm for all Perl versions.
 
 ...
 }
