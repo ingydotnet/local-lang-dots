@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 export LOCAL_LANG_ROOT=$HOME/local/opt
 mkdir -p $LOCAL_LANG_ROOT
@@ -17,3 +17,8 @@ export PERLBREW_ROOT=$LOCAL_LANG_ROOT/perl5/perlbrew
 alias pyb=pythonbrew
 ...path-prepend $LOCAL_LANG_ROOT/python/pythonbrew/bin
 export PYTHONBREW_ROOT=$LOCAL_LANG_ROOT/python/pythonbrew
+
+# RbEnv settings:
+...path-prepend $LOCAL_LANG_ROOT/rbenv/bin
+eval "$(rbenv init -)"
+export RBENV_ROOT=$LOCAL_LANG_ROOT/rbenv

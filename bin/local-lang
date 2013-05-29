@@ -8,26 +8,35 @@ main() {
         '-?' | h | help) usage ;;
         w | which) which_local_lang ;;
         v | version) local_lang_version ;;
+        install[-_]nvm) install_nvm ;;
         install[-_]perlbrew) install_perlbrew ;;
         install[-_]pythonbrew) install_pythonbrew ;;
-        ruby) install_ruby ;;
-        node) install_node ;;
+        install[-_]rbenv) install_rbenv ;;
         *) usage
     esac
 }
 
 install_perlbrew() {
+    PERLBREW_ROOT=$LOCAL_LANG_ROOT/perlbrew
     echo ">>> Installing 'perlbrew' for you"
-    [ -e $LOCAL_LANG_ROOT/perl5/perlbrew/bin/perlbrew ] &&
-        die 'perlbrew already installed'
+    [ -e $PERLBREW_ROOT ] && die 'perlbrew already installed'
     echo "$(curl -kL http://install.perlbrew.pl | bash)"
 }
 
 install_pythonbrew() {
+    PYTHONBREW_ROOT=$LOCAL_LANG_ROOT/pythonbrew
     echo ">>> Installing 'pythonbrew' for you"
-    [ -e $LOCAL_LANG_ROOT/python/pythonbrew/bin/pythonbrew ] &&
-        die 'pythonbrew already installed'
+    [ -e $PYTHONBREW_ROOT ] && die 'pythonbrew already installed'
     echo "$(curl -kL http://xrl.us/pythonbrewinstall | bash)"
+}
+
+install_rbenv() {
+    RBENV_ROOT=$LOCAL_LANG_ROOT/rbenv
+    echo ">>> Installing 'rbenv' for you"
+    [ -e $RBENV_ROOT ] && die 'rbenv already installed'
+    git clone git://github.com/sstephenson/rbenv.git $RBENV_ROOT
+    git clone https://github.com/sstephenson/ruby-build.git \
+        $RBENV_ROOT/plugins/ruby-build
 }
 
 which_local_lang() {
