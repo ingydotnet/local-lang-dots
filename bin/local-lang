@@ -12,6 +12,7 @@ main() {
         install[-_]perlbrew) install_perlbrew ;;
         install[-_]pythonbrew) install_pythonbrew ;;
         install[-_]rbenv) install_rbenv ;;
+        install[-_]cpanm) install_cpanm ;;
         *) usage
     esac
 }
@@ -44,6 +45,12 @@ install_rbenv() {
     git clone git://github.com/sstephenson/rbenv.git $RBENV_ROOT
     git clone https://github.com/sstephenson/ruby-build.git \
         $RBENV_ROOT/plugins/ruby-build
+}
+
+install_cpanm() {
+    for p in $(perlbrew list); do
+        perlbrew exec --with $p 'curl -L http://cpanmin.us | perl - App::cpanminus'
+    done
 }
 
 which_local_lang() {
