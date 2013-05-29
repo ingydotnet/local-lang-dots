@@ -67,7 +67,19 @@ get_version_string() {
 }
 
 usage() {
-    die "Usage $0 [list | node | perl | python | ruby]"
+    cat <<...
+Usage:
+    $(basename $0) <command>
+
+Commands:
+    v | version         Show all local language versions.
+    w | which           Show paths to local lang binaries.
+    install-nvm         Install NVM
+    install-perlbrew    Install PerlBrew
+    install-pythonbrew  Install PythonBrew
+    install-rbenv       Install RbEnv
+
+...
 }
 
 die() {
