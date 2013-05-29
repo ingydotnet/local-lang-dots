@@ -3,21 +3,3 @@
 export LOCAL_LANG_ROOT=$HOME/local/opt
 mkdir -p $LOCAL_LANG_ROOT
 alias lola=local-lang
-
-# NVM settings:
-[ -e $LOCAL_LANG_ROOT/nvm/nvm.sh ] && . $LOCAL_LANG_ROOT/nvm/nvm.sh
-
-# PerlBrew settings:
-alias pb=perlbrew
-...path-prepend $LOCAL_LANG_ROOT/perlbrew/bin
-export PERLBREW_ROOT=$LOCAL_LANG_ROOT/perlbrew
-
-# PythonBrew settings:
-alias pyb=pythonbrew
-...path-prepend $LOCAL_LANG_ROOT/pythonbrew/bin
-export PYTHONBREW_ROOT=$LOCAL_LANG_ROOT/pythonbrew
-
-# RbEnv settings:
-...path-prepend $LOCAL_LANG_ROOT/rbenv/bin
-eval "$(rbenv init -)"
-export RBENV_ROOT=$LOCAL_LANG_ROOT/rbenv

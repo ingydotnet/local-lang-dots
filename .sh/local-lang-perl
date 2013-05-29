@@ -1,0 +1,33 @@
+#!/bin/sh
+
+# PerlBrew settings:
+alias pb=perlbrew
+...path-prepend $LOCAL_LANG_ROOT/perlbrew/bin
+export PERLBREW_ROOT=$LOCAL_LANG_ROOT/perlbrew
+
+p56() {
+ $PERLBREW_ROOT/perls/perl-5.6.2/bin/perl "$*"
+}
+p58() {
+ $PERLBREW_ROOT/perls/perl-5.8.9/bin/perl "$*"
+}
+p510() {
+ $PERLBREW_ROOT/perls/perl-5.10.1/bin/perl "$*"
+}
+p512() {
+ $PERLBREW_ROOT/perls/perl-5.12.5/bin/perl "$*"
+}
+p514() {
+ $PERLBREW_ROOT/perls/perl-5.14.2/bin/perl "$*"
+}
+p516() {
+ $PERLBREW_ROOT/perls/perl-5.16.3/bin/perl "$*"
+}
+p518() {
+ $PERLBREW_ROOT/perls/perl-5.18.0/bin/perl "$*"
+}
+p519() {
+ $PERLBREW_ROOT/perls/perl-5.19.0/bin/perl "$*"
+ }
+
+

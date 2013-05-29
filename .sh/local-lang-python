@@ -1,0 +1,6 @@
+#!/bin/bash
+
+# PythonBrew settings:
+alias pyb=pythonbrew
+...path-prepend $LOCAL_LANG_ROOT/pythonbrew/bin
+export PYTHONBREW_ROOT=$LOCAL_LANG_ROOT/pythonbrew
