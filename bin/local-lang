@@ -1,0 +1,62 @@
+#!/bin/bash
+
+main() {
+    [ -n $LOCAL_LANG_ROOT ] || die "LOCAL_LANG_ROOT not set"
+    [ -d $LOCAL_LANG_ROOT ] || die "dir '$LOCAL_LANG_ROOT' does not exist"
+    [ -n "$1" ] || usage
+    case $1 in
+        '-?' | h | help) usage ;;
+        w | which) which_local_lang ;;
+        v | version) local_lang_version ;;
+        install[-_]perlbrew) install_perlbrew ;;
+        install[-_]pythonbrew) install_pythonbrew ;;
+        ruby) install_ruby ;;
+        node) install_node ;;
+        *) usage
+    esac
+}
+
+install_perlbrew() {
+    echo ">>> Installing 'perlbrew' for you"
+    [ -e $LOCAL_LANG_ROOT/perl5/perlbrew/bin/perlbrew ] &&
+        die 'perlbrew already installed'
+    echo "$(curl -kL http://install.perlbrew.pl | bash)"
+}
+
+install_pythonbrew() {
+    echo ">>> Installing 'pythonbrew' for you"
+    [ -e $LOCAL_LANG_ROOT/python/pythonbrew/bin/pythonbrew ] &&
+        die 'pythonbrew already installed'
+    echo "$(curl -kL http://xrl.us/pythonbrewinstall | bash)"
+}
+
+which_local_lang() {
+    echo "Node.js: $(which node)"
+    echo "Perl5:   $(which perl)"
+    echo "Python2: $(which python)"
+    echo "Ruby:    $(which ruby)"
+}
+
+local_lang_version() {
+    # echo "Node:    $(node --version 2>&1 | perl -ne 'print $1 if /(\d+\.\d+\.\d+)/')"
+    echo "Node:    $(get_version_string 'node --version')"
+    echo "Perl5:   $(get_version_string 'perl -v')"
+    echo "Python:  $(get_version_string 'python --version')"
+    echo "Ruby:    $(get_version_string 'ruby -v')"
+}
+
+get_version_string() {
+    command=$1
+    echo "$($command 2>&1 | perl -ne 'print $1 if /(\d+\.\d+\.\d+)/')"
+}
+
+usage() {
+    die "Usage $0 [list | node | perl | python | ruby]"
+}
+
+die() {
+    echo "$1"
+    exit 1
+}
+
+main $*

@@ -1,0 +1,19 @@
+#!/bin/sh
+
+export LOCAL_LANG_ROOT=$HOME/local/opt
+mkdir -p $LOCAL_LANG_ROOT
+alias lola=local-lang
+
+# NVM settings:
+
+
+
+# PerlBrew settings:
+alias pb=perlbrew
+...path-prepend $LOCAL_LANG_ROOT/perl5/perlbrew/bin
+export PERLBREW_ROOT=$LOCAL_LANG_ROOT/perl5/perlbrew
+
+# PythonBrew settings:
+alias pyb=pythonbrew
+...path-prepend $LOCAL_LANG_ROOT/python/pythonbrew/bin
+export PYTHONBREW_ROOT=$LOCAL_LANG_ROOT/python/pythonbrew
