@@ -16,6 +16,13 @@ main() {
     esac
 }
 
+install_nvm() {
+    NVM_ROOT=$LOCAL_LANG_ROOT/nvm
+    echo ">>> Installing 'nvm' for you"
+    [ -e $NVM_ROOT ] && die 'nvm already installed'
+    git clone git://github.com/creationix/nvm.git $NVM_ROOT
+}
+
 install_perlbrew() {
     PERLBREW_ROOT=$LOCAL_LANG_ROOT/perlbrew
     echo ">>> Installing 'perlbrew' for you"
