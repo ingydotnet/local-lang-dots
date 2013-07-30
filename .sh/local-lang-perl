@@ -4,6 +4,7 @@
 alias pb=perlbrew
 ...path-prepend $LOCAL_LANG_ROOT/perlbrew/bin
 export PERLBREW_ROOT=$LOCAL_LANG_ROOT/perlbrew
+source $PERLBREW_ROOT/etc/bashrc
 
 p56() {
  $PERLBREW_ROOT/perls/perl-5.6.2/bin/perl "$*"
@@ -27,7 +28,5 @@ p518() {
  $PERLBREW_ROOT/perls/perl-5.18.0/bin/perl "$*"
 }
 p519() {
- $PERLBREW_ROOT/perls/perl-5.19.0/bin/perl "$*"
- }
-
-
+ $PERLBREW_ROOT/perls/perl-5.19.2/bin/perl "$*"
+}
