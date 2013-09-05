@@ -1,0 +1,3 @@
+#!/bin/sh
+
+source $LOCAL_LANG_ROOT/p6env/lib/p6env-init.bash

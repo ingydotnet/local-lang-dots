@@ -5,13 +5,15 @@ main() {
     [ -d $LOCAL_LANG_ROOT ] || die "dir '$LOCAL_LANG_ROOT' does not exist"
     [ -n "$1" ] || usage
     case $1 in
-        '-?' | h | help) usage ;;
-        w | which) which_local_lang ;;
-        v | version) local_lang_version ;;
+        '-?' | -h | --help) usage ;;
+        -w | --which) which_local_lang ;;
+        -v | --version) local_lang_version ;;
         install[-_]nvm) install_nvm ;;
         install[-_]perlbrew) install_perlbrew ;;
         install[-_]pythonbrew) install_pythonbrew ;;
         install[-_]rbenv) install_rbenv ;;
+        install[-_]plenv) install_plenv ;;
+        install[-_]p6env) install_p6env ;;
         install[-_]cpanm) install_cpanm ;;
         *) usage
     esac
@@ -19,32 +21,48 @@ main() {
 
 install_nvm() {
     NVM_ROOT=$LOCAL_LANG_ROOT/nvm
-    echo ">>> Installing 'nvm' for you"
     [ -e $NVM_ROOT ] && die 'nvm already installed'
-    git clone git://github.com/creationix/nvm.git $NVM_ROOT
+    echo ">>> Installing 'nvm'"
+    git clone git@github.com:creationix/nvm.git $NVM_ROOT
 }
 
 install_perlbrew() {
     PERLBREW_ROOT=$LOCAL_LANG_ROOT/perlbrew
-    echo ">>> Installing 'perlbrew' for you"
     [ -e $PERLBREW_ROOT ] && die 'perlbrew already installed'
-    echo "$(curl -kL http://install.perlbrew.pl | bash)"
+    echo ">>> Installing 'perlbrew'"
+    curl -kL http://install.perlbrew.pl | bash
+    perlbrew install-cpanm
+    cpanm
 }
 
 install_pythonbrew() {
     PYTHONBREW_ROOT=$LOCAL_LANG_ROOT/pythonbrew
-    echo ">>> Installing 'pythonbrew' for you"
     [ -e $PYTHONBREW_ROOT ] && die 'pythonbrew already installed'
-    echo "$(curl -kL http://xrl.us/pythonbrewinstall | bash)"
+    echo ">>> Installing 'pythonbrew'"
+    curl -kL http://xrl.us/pythonbrewinstall | bash
 }
 
 install_rbenv() {
     RBENV_ROOT=$LOCAL_LANG_ROOT/rbenv
-    echo ">>> Installing 'rbenv' for you"
     [ -e $RBENV_ROOT ] && die 'rbenv already installed'
-    git clone git://github.com/sstephenson/rbenv.git $RBENV_ROOT
-    git clone https://github.com/sstephenson/ruby-build.git \
+    echo ">>> Installing 'rbenv'"
+    git clone git@github.com:sstephenson/rbenv.git $RBENV_ROOT
+    git clone git@github.com:sstephenson/ruby-build.git \
         $RBENV_ROOT/plugins/ruby-build
+}
+
+install_plenv() {
+    PLENV_ROOT=$LOCAL_LANG_ROOT/plenv
+    [ -e $PLENV_ROOT ] && die 'plenv already installed'
+    echo ">>> Installing 'plenv'"
+    git clone git@github.com:tokuhirom/plenv.git $PLENV_ROOT
+}
+
+install_p6env() {
+    P6ENV_ROOT=$LOCAL_LANG_ROOT/p6env
+    [ -e $P6ENV_ROOT ] && die 'p6env already installed'
+    echo ">>> Installing 'p6env'"
+    git clone git@github.com:ingydotnet/p6env.git $P6ENV_ROOT
 }
 
 install_cpanm() {
@@ -79,12 +97,14 @@ Usage:
     $(basename $0) <command>
 
 Commands:
-    v | version         Show all local language versions.
-    w | which           Show paths to local lang binaries.
+    -v | --version      Show all local language versions.
+    -w | --which        Show paths to local lang binaries.
     install-nvm         Install NVM
     install-perlbrew    Install PerlBrew
     install-pythonbrew  Install PythonBrew
     install-rbenv       Install rbenv
+    install-plenv       Install plenv
+    install-p6env       Install p6env
     install-cpanm       Install cpanm for all Perl versions.
 
 ...
@@ -95,4 +115,4 @@ die() {
     exit 1
 }
 
-main $*
+main "$@"

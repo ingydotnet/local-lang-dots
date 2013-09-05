@@ -1,5 +1,7 @@
-#!/bin/bash
+#!/bin/sh
 
-export LOCAL_LANG_ROOT=$HOME/local/opt
-mkdir -p $LOCAL_LANG_ROOT
-alias lola=local-lang
+if [ -z "$LOCAL_LANG_ROOT" ]; then
+    export LOCAL_LANG_ROOT=$HOME/local/opt
+    mkdir -p $LOCAL_LANG_ROOT
+    alias lola=local-lang
+fi

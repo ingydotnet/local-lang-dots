@@ -1,10 +1,10 @@
 #!/bin/sh
 
-# PerlBrew settings:
-alias pb=perlbrew
-...path-prepend $LOCAL_LANG_ROOT/perlbrew/bin
 export PERLBREW_ROOT=$LOCAL_LANG_ROOT/perlbrew
+...path-prepend $PERLBREW_ROOT/bin
 source $PERLBREW_ROOT/etc/bashrc
+
+alias pb=perlbrew
 
 p56() {
  $PERLBREW_ROOT/perls/perl-5.6.2/bin/perl "$*"

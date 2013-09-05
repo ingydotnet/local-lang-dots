@@ -1,0 +1,6 @@
+#!/bin/sh
+
+export PLENV_ROOT=$LOCAL_LANG_ROOT/plenv
+...path-prepend $PLENV_ROOT/bin
+eval "$(plenv init -)"
+

@@ -1,0 +1,4 @@
+#!/bin/sh
+
+[ -e $LOCAL_LANG_ROOT/nvm/nvm.sh ] &&
+    . $LOCAL_LANG_ROOT/nvm/nvm.sh

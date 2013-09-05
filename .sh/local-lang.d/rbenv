@@ -1,0 +1,5 @@
+#!/bin/sh
+
+export RBENV_ROOT=$LOCAL_LANG_ROOT/rbenv
+...path-prepend $RBENV_ROOT/bin
+eval "$(rbenv init -)"

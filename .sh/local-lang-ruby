@@ -1,6 +1,0 @@
-#!/bin/bash
-
-# RbEnv settings:
-...path-prepend $LOCAL_LANG_ROOT/rbenv/bin
-eval "$(rbenv init -)"
-export RBENV_ROOT=$LOCAL_LANG_ROOT/rbenv
